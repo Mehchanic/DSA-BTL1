@@ -3,8 +3,11 @@
 // ----------------- ArrayList Implementation -----------------
 
 template <class T>
-ArrayList<T>::ArrayList(int initCapacity = 10) {
+ArrayList<T>::ArrayList(int initCapacity = 10) : capacity(initCapacity), count(0) {
     // TODO
+
+    //cap phat
+    this->data = new T[initCapacity];
 }
 
 template <class T>
