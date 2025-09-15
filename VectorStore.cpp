@@ -4,15 +4,19 @@
 
 template <class T>
 ArrayList<T>::ArrayList(int initCapacity = 10) : capacity(initCapacity), count(0) {
-    // TODO
-
-    //cap phat
+    //Cấp phát địa chỉ ô nhớ của ArrayList
     this->data = new T[initCapacity];
 }
 
 template <class T>
 ArrayList<T>::ArrayList(const ArrayList<T>& other) {
-    // TODO
+    //Cấp phát địa chỉ ô nhớ của ArrayList, sao chép count và kích thước vùng nhớ
+    this->count = other.count;
+    this->capacity = other.capacity;
+    this->data = new T[other.capacity];
+
+    //Copy dữ liệu từ other sang
+    for (int i = 0; i < other.count; i++) this->data[i] = other.data[i];
 }   
 
 template <class T>
