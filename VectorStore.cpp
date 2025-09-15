@@ -75,11 +75,25 @@ ArrayList<T>& ArrayList<T>::operator=(const ArrayList<T>& other) {
 template <class T>
 void ArrayList<T>::add(T e) {
     //Kiểm tra capacity
-    if (capacity < count + 1) ensureCapacity(count + 1);
+    if (capacity < this->count + 1) ensureCapacity(this->count + 1);
 
     //Thêm vào cuối danh sách
-    this->data[count] = e;
-    count++;
+    this->data[this->count] = e;
+    this->count++;
+}
+
+template <class T>
+void ArrayList<T>::add(int index, T e) {
+    //Kiểm tra ban đầu
+    if (index < 0 || index > count) throw std::out_of_range("Index is invalid!");
+
+    //Kiểm tra capacity
+    if (capacity < this->count + 1) ensureCapacity(this->count + 1);
+
+    //Kiểm tra index
+    for (int i = count - 1; i >= index; i--) this->data[i+1] = this->data[i];
+    this->data[index] = e;
+    this->count++;
 }
 
 // ----------------- Iterator of ArrayList Implementation -----------------
