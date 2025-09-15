@@ -56,12 +56,21 @@ void ArrayList<T>::ensureCapacity(int cap) {
 
 template <class T>
 ArrayList<T>& ArrayList<T>::operator=(const ArrayList<T>& other) {
-    //Kiểm tra capacity của other và gốc
-    if (other.capacity > this->capacity) ensureCapacity(other.capacity);
+    //Kiểm tra tự gán
+    if (this == &other) return *this;
+
+    //Nếu có bộ nhớ hiện tại thì xóa nó, tạo mới, rồi copy các biến của other
+    delete[] this->data;
+    this->data = new T[other.capacity];
+    this->count = other.count;
+    this->capacity = other.capacity;
 
     //Copy qua
     for (int i = 0; i < other.count; i++) this->data[i] = other.data[i];
+
+    return *this;
 }
+    
 // ----------------- Iterator of ArrayList Implementation -----------------
 template <class T>
 ArrayList<T>::Iterator::Iterator(ArrayList<T>* pList, int index) {
