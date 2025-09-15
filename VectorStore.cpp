@@ -27,7 +27,31 @@ ArrayList<T>::~ArrayList() {
 
 // TODO: implement other methods of ArrayList
 
+template <class T>
+void ArrayList<T>::ensureCapacity(int cap) {
+    //Nếu cap bé hơn capacity ban đầu, ngừng chương trình
+    if (this->capacity >= cap) return;
+    
+    //Tạo capacity mới đảm bảo lớn hơn cap
+    int newCapacity = this->capacity*2;
+    if (newCapacity == 0) newCapacity = 10;
+    while (newCapacity < cap) newCapacity = newCapacity*2;
 
+    //Tạo vùng nhớ mới
+    T *newData = new T[newCapacity];
+    
+    //Copy từ vùng cũ qua
+    for (int i = 0; i < this->count; i++) newData[i] = this->data[i];
+
+    //Thay đổi ô nhớ
+    T *temp = this->data;
+    this->data = newData;
+    this->capacity = newCapacity;
+
+    //Xóa vùng nhớ cũ
+    delete[] temp;
+    temp = nullptr;
+}
 
 // ----------------- Iterator of ArrayList Implementation -----------------
 template <class T>
