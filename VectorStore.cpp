@@ -92,8 +92,22 @@ void ArrayList<T>::add(int index, T e) {
 
     //Kiểm tra index
     for (int i = count - 1; i >= index; i--) this->data[i+1] = this->data[i];
-    this->data[index] = e;
-    this->count++;
+    this->count--;
+}
+
+
+template <class T>
+T ArrayList<T>::removeAt(int index) {
+    //Kiểm tra ban đầu
+    if (index < 0 || index >= count) throw std::out_of_range("Index is invalid!");
+
+    //Lưu phần tử
+    T result = this->data[index];
+    //Xóa và dịch
+    for (int i = index; i < count - 1; i++) this->data[i] = this->data[i+1];
+    this->count--;
+
+    return result;
 }
 
 // ----------------- Iterator of ArrayList Implementation -----------------
