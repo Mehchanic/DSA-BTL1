@@ -21,7 +21,8 @@ ArrayList<T>::ArrayList(const ArrayList<T>& other) {
 
 template <class T>
 ArrayList<T>::~ArrayList() {
-    // TODO
+    //Xóa vùng nhớ đã cấp phát
+    delete[] this->data;
 }
 
 // TODO: implement other methods of ArrayList
