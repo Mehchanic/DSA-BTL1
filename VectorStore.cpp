@@ -71,6 +71,17 @@ ArrayList<T>& ArrayList<T>::operator=(const ArrayList<T>& other) {
     return *this;
 }
     
+
+template <class T>
+void ArrayList<T>::add(T e) {
+    //Kiểm tra capacity
+    if (capacity < count + 1) ensureCapacity(count + 1);
+
+    //Thêm vào cuối danh sách
+    this->data[count] = e;
+    count++;
+}
+
 // ----------------- Iterator of ArrayList Implementation -----------------
 template <class T>
 ArrayList<T>::Iterator::Iterator(ArrayList<T>* pList, int index) {
