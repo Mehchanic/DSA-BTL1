@@ -59,14 +59,17 @@ ArrayList<T>& ArrayList<T>::operator=(const ArrayList<T>& other) {
     //Kiểm tra tự gán
     if (this == &other) return *this;
 
-    //Nếu có bộ nhớ hiện tại thì xóa nó, tạo mới, rồi copy các biến của other
+    //Tạo vùng nhớ mới và copy qua
+    T*newData = new T[other.capacity];
+    for (int i = 0; i < other.count; i++) newData[i] = other.data[i];
+
+    //Xóa vùng nhớ cũ, thay vùng nhớ mới vô
     delete[] this->data;
-    this->data = new T[other.capacity];
+
+    this->data = newData;
     this->count = other.count;
     this->capacity = other.capacity;
 
-    //Copy qua
-    for (int i = 0; i < other.count; i++) this->data[i] = other.data[i];
 
     return *this;
 }
@@ -92,7 +95,8 @@ void ArrayList<T>::add(int index, T e) {
 
     //Kiểm tra index
     for (int i = count - 1; i >= index; i--) this->data[i+1] = this->data[i];
-    this->count--;
+    this->data[index] = e;
+    this->count++;
 }
 
 
