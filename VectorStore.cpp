@@ -135,6 +135,20 @@ void ArrayList<T>::clear() {
     this->count = 0;
 }
 
+
+template <class T>
+T& ArrayList<T>::get(int index) {
+    if (index < 0 || index >= count) throw std::out_of_range("Index is invalid!");
+    return this->data[index];
+}
+
+
+template <class T>
+void ArrayList<T>::set(int index, T e) {
+    if (index < 0 || index >= count) throw std::out_of_range("Index is invalid!");
+    this->data[index] = e;
+}
+
 // ----------------- Iterator of ArrayList Implementation -----------------
 template <class T>
 ArrayList<T>::Iterator::Iterator(ArrayList<T>* pList, int index) {
