@@ -164,6 +164,26 @@ bool ArrayList<T>::contains(T item) const {
     return indexOf(item) != -1;
 }
 
+
+template <class T>
+string ArrayList<T>::toString(string (*item2str)(T&) = 0) const {
+    //Nếu danh sách rỗng
+    if (this->count == 0) return "[]";
+
+    //Bắt đầu chuỗi
+    stringstream ss;
+    ss << "[";
+
+    for (int i = 0; i < this->count; i++)
+    {
+        if (item2str != 0) ss << item2str(this->data[i]);
+        else ss << this->data[i];
+        if (i != this->count - 1) ss << ", ";
+    }
+    ss << "]";
+
+    return ss.str();
+}
 // ----------------- Iterator of ArrayList Implementation -----------------
 template <class T>
 ArrayList<T>::Iterator::Iterator(ArrayList<T>* pList, int index) {
