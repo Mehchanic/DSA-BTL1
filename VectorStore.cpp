@@ -114,6 +114,27 @@ T ArrayList<T>::removeAt(int index) {
     return result;
 }
 
+
+template <class T>
+bool ArrayList<T>::empty() const {
+    return this->count == 0;
+}
+
+
+template <class T>
+int ArrayList<T>::size() const {
+    return this->count;
+}
+
+
+template <class T>
+void ArrayList<T>::clear() {
+    delete[] this->data;
+    this->data = new T[10];
+    this->capacity = 10;
+    this->count = 0;
+}
+
 // ----------------- Iterator of ArrayList Implementation -----------------
 template <class T>
 ArrayList<T>::Iterator::Iterator(ArrayList<T>* pList, int index) {
