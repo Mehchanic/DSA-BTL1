@@ -149,6 +149,21 @@ void ArrayList<T>::set(int index, T e) {
     this->data[index] = e;
 }
 
+
+template <class T>
+int ArrayList<T>::indexOf(T item) const {
+    //Lặp tìm item
+    for (int i = 0; i < count; i++) if (this->data[i] == item) return i;
+
+    return -1;
+}
+
+
+template <class T>
+bool ArrayList<T>::contains(T item) const {
+    return indexOf(item) != -1;
+}
+
 // ----------------- Iterator of ArrayList Implementation -----------------
 template <class T>
 ArrayList<T>::Iterator::Iterator(ArrayList<T>* pList, int index) {
